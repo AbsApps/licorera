@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 // Laravel 8 cambio la configuracion de sus namespace para las rutas por eso ahora hay que importarlas
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ExchageRateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,5 +46,17 @@ Route::controller(ProductoController::class)->group(function () {
     Route::put('/product/store', 'update');
     Route::delete('/product/store', 'destroy');
     Route::get('/product/search', 'search');
+    
+});
+
+
+
+Route::controller(ExchageRateController::class)->group(function () {
+   
+    Route::get('/exchage', 'index');
+    Route::post('/exchage/store', 'store');
+    Route::put('/exchage/store', 'update');
+    Route::delete('/exchage/store', 'destroy');
+    // Route::get('/exchage/search', 'search');
     
 });
