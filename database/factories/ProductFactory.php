@@ -20,7 +20,7 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'sku' => $this->faker->ein(),
-            'price' => $this->faker->numberBetween(10, 5000),
+            'price' => $this->faker->numberBetween(10, 200),
             'description' => $this->faker->sentence(5),             
             'active' => $this->faker->boolean(),
         ];

@@ -67,53 +67,107 @@ class InvoiceController extends Controller
     public function detail(Request $request)
     {
 
-        $invoice = new InvoiceDetail();
-        $result = $invoice::join('products', 'products.id', '=', 'invoice_details.product_id')
-            ->join('invoices', 'invoices.id', '=', 'invoice_details.invoice_id')
+
+        $data = [];
+        $iva = 0.15;
+        $data['invoice_info'] = [];
+        $data['invoice_total'] = [
+            'nio_total_sub' => 0,
+            'nio_iva' => 0,
+            'nio_total' => 0,
+            'usd_total_sub' => 0,
+            'usd_iva' => 0,
+            'usd_total' => 0
+        ];
+        $data['invoice_detail'] = [];
+        //Parametros para busquedas
+        $invoice_id = 0;
+
+
+        $invoice = new Invoice();
+        $invoice_result = $invoice::join('clients', 'clients.id', '=', 'invoices.client_id')
             ->join('exchange_rates', 'exchange_rates.id', '=', 'invoices.exchange_rate_id')
-            ->join('clients', 'clients.id', '=', 'invoices.client_id')
-            ->orderBy('invoice_details.created_at', 'ASC')
-            ->where('invoice_details.active', '=', 1)
-            // ->where('invoice_details.invoice_id', '=', $request->id)
+            ->orderBy('invoices.created_at', 'DESC')
             ->where('invoices.code', '=', $request->invoice_code)
+            ->where('invoices.active', '=', 1)
             ->select(
                 'invoices.id as invoice_id',
                 'invoices.code as invoice_code',
+                'invoices.description as invoice_description',
                 'clients.id as client_id',
+                'clients.name as client',
                 'clients.ruc as client_ruc',
+                'clients.code as client_code',
+                'exchange_rates.id as rate_id ',
+                'exchange_rates.rate as rate_to_apply',
+                'exchange_rates.date as rate_date',
+            );
+
+        // Obtengo la informacion general de la factura    
+        $data['invoice_info'] = $invoice_result->get()->toArray();
+
+
+        if (count($data['invoice_info']) <= 0) {
+            return response()->json([
+                'res' => false,
+                'msg' => 'No se ha encontrado una factura activa, con codigo!'
+            ], 200);
+            exit;
+        }
+        // Obtiene el ID
+        $invoice_id =  $data['invoice_info'][0]['invoice_id'];
+
+
+
+
+        /**
+         * Buscando detalle de la factura
+         */
+
+        $invoice = new InvoiceDetail();
+        $result = $invoice::join('products', 'products.id', '=', 'invoice_details.product_id')
+            ->join('invoices', 'invoices.id', '=', 'invoice_details.invoice_id')
+            ->orderBy('invoice_details.created_at', 'ASC')
+            ->where('invoice_details.active', '=', 1)
+            ->where('invoice_details.invoice_id', '=',  $invoice_id)
+            ->select(
                 'invoice_details.*',
                 'products.name as product_name',
                 'products.sku as product_sku',
                 'products.description as product_description',
                 'products.price as product_price',
-                'exchange_rates.id as rate_id ',
-                'exchange_rates.rate',
-                'exchange_rates.date as rate_date'
             );
 
+
+        /**
+         * Si no encuentra registros, termina aqui
+         */
         if (count($result->get()) <= 0) {
-            return response()->json(['res' => false, 'msg' => 'Not found record!'], 200);
-            exit;
+            $no_found_data = ['res' => false, 'msg' => 'Not found record!'];
+            $data['invoice_detail'] = $no_found_data;
+            return $data;
         }
+
 
         /**
          * Generate Invoice
          */
-        $data = [];
-        $iva = 0.15;
         $data['invoice_detail'] = $result->get();
-        $data['total_sub'] = 0;
 
-
-        // total_sub 
         foreach ($data['invoice_detail'] as $key => $value) {
-            $data['total_sub'] += round($value['product_price'], 2);
+            $data['invoice_total']['nio_total_sub'] += round(($value['product_price'] * $value['quantity']), 2);
         }
 
+        $data['invoice_total']['nio_iva'] = round(($data['invoice_total']['nio_total_sub'] * $iva), 2);
+        $data['invoice_total']['nio_total'] = round($data['invoice_total']['nio_total_sub'] + $data['invoice_total']['nio_iva'], 2);
 
-        
-        $data['iva'] = round(($data['total_sub'] * $iva), 2);
-        $data['total'] = round($data['total_sub'] + $data['iva'], 2);
+        /**
+         * Aplicando converscion NIO -> USD
+         */
+        $tasa = $data['invoice_info'][0]['rate_to_apply'];
+        $data['invoice_total']['usd_total_sub'] = round(($data['invoice_total']['nio_total_sub'] / $tasa), 2);
+        $data['invoice_total']['usd_iva'] = round(($data['invoice_total']['usd_total_sub'] * $iva), 2);
+        $data['invoice_total']['usd_total'] = round($data['invoice_total']['usd_total_sub'] + $data['invoice_total']['usd_iva'], 2);
 
         return $data;
     }
