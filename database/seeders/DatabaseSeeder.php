@@ -17,12 +17,11 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         $this->call([
-            
+            ExchangeRateSeeder::class,
             ClientSeeder::class,
             ProductSeeder::class,
             InvoiceSeeder::class,
             InvoiceDetailSeeder::class
-
 
         ]);
     }

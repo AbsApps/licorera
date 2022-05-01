@@ -11,12 +11,16 @@ class CreateInvoicesTable extends Migration
      *
      * @return void
      */
-    public function up()   {
+    public function up()
+    {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id') // UNSIGNED BIG INT
-                    ->references('id')
-                    ->on('clients'); 
+                ->references('id')
+                ->on('clients');
+            // $table->foreignId('exchange_rate_id') // UNSIGNED BIG INT
+            //     ->references('id')
+            //     ->on('exchange_rates');
             $table->string('code');
             $table->string('description');
             $table->boolean('active');
@@ -31,6 +35,7 @@ class CreateInvoicesTable extends Migration
      */
     public function down()
     {
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0');
         Schema::dropIfExists('invoices');
     }
 }

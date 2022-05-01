@@ -4,10 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-use App\Models\Product;
-use App\Models\Invoice;
-
-class InvoiceDetailFactory extends Factory
+class ExchangeRateFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,12 +14,11 @@ class InvoiceDetailFactory extends Factory
     public function definition()
     {
         return [
-            'invoice_id' => Invoice::inRandomOrder()->first()->id,
-            'product_id' => Product::inRandomOrder()->first()->id,
-            'quantity' => $this->faker->numberBetween(0, 100),
+            'rate' => $this->faker->numberBetween(33, 37),
+            'date' => $this->faker->dateTime(),
             'active' => $this->faker->numberBetween(0, 1),
             'created_at' => $this->faker->date(),
             'updated_at' => $this->faker->date(),
         ];
     }
-} 
+}
