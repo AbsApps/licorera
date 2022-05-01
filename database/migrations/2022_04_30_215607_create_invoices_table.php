@@ -18,10 +18,10 @@ class CreateInvoicesTable extends Migration
             $table->foreignId('client_id') // UNSIGNED BIG INT
                 ->references('id')
                 ->on('clients');
-            // $table->foreignId('exchange_rate_id') // UNSIGNED BIG INT
-            //     ->references('id')
-            //     ->on('exchange_rates');
-            $table->string('code');
+            $table->foreignId('exchange_rate_id') // UNSIGNED BIG INT
+                ->references('id')
+                ->on('exchange_rates');
+            $table->string('code')->unique();
             $table->string('description');
             $table->boolean('active');
             $table->timestamps();

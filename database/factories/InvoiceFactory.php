@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Invoice;
 use App\Models\Client;
+use App\Models\ExchangeRate;
 
 class InvoiceFactory extends Factory
 {
@@ -20,6 +21,7 @@ class InvoiceFactory extends Factory
         return [
 
             'client_id' => Client::inRandomOrder()->first()->id,
+            'exchange_rate_id' => ExchangeRate::inRandomOrder()->first()->id,
             // 'name' => $this->faker->company(),
             'code' => $this->faker->ein(),
             'description' => $this->faker->sentence(),

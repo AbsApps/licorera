@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ExchageRateController;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Route::resource('client', ClientController::class)->names('client');
 
 Route::controller(ClientController::class)->group(function () {
-   
+
     Route::get('/client', 'index');
     Route::get('/client/search', 'search');
     Route::post('/client/store', 'store');
@@ -40,23 +41,29 @@ Route::controller(ClientController::class)->group(function () {
 
 
 Route::controller(ProductoController::class)->group(function () {
-   
+
     Route::get('/product', 'index');
     Route::post('/product/store', 'store');
     Route::put('/product/store', 'update');
     Route::delete('/product/store', 'destroy');
     Route::get('/product/search', 'search');
-    
 });
 
 
 
 Route::controller(ExchageRateController::class)->group(function () {
-   
+
     Route::get('/exchage', 'index');
     Route::post('/exchage/store', 'store');
     Route::put('/exchage/store', 'update');
     Route::delete('/exchage/store', 'destroy');
-    // Route::get('/exchage/search', 'search');
-    
+});
+
+
+Route::controller(InvoiceController::class)->group(function () {
+
+    Route::get('/invoice', 'index');
+    Route::post('/invoice/store', 'store');
+    Route::put('/invoice/add', 'update');
+    // Route::delete('/invoice/store', 'destroy');
 });
