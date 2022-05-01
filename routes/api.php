@@ -65,5 +65,5 @@ Route::controller(InvoiceController::class)->group(function () {
     Route::get('/invoice', 'index');
     Route::post('/invoice/store', 'store');
     Route::put('/invoice/add', 'update');
-    // Route::delete('/invoice/store', 'destroy');
+    Route::delete('/invoice/store', 'destroy');
 });

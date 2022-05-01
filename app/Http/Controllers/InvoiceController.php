@@ -88,8 +88,8 @@ class InvoiceController extends Controller
 
             return  response()->json($client->toArray(), 200);
         } catch (\Exception $e) {
-            // return response()->json($e->getMessage(), 500);
-            return response()->json(['res' => false, 'msg' => 'Internal Error!'], 500);
+            return response()->json($e->getMessage(), 500);
+            // return response()->json(['res' => false, 'msg' => 'Internal Error!'], 500);
         }
     }
 
@@ -99,8 +99,26 @@ class InvoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), ['id'=> 'required|int']);
+
+        if ($validator->fails()) {
+            return $validator->messages()->toJson();
+        }
+
+        try{
+            $client = Invoice::findOrFail($request->id);
+            $client->active = 0;        
+            $client->updated_at = now();
+            $client->save();
+
+            return  response()->json($client->toArray(), 200);
+
+        } catch (\Exception $e) {
+            // return response()->json($e->getMessage(), 500);
+            return response()->json(['res' => false, 'msg' => 'Internal Error!'], 500);
+        }
+
     }
 }
