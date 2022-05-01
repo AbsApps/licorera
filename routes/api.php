@@ -63,6 +63,7 @@ Route::controller(ExchageRateController::class)->group(function () {
 Route::controller(InvoiceController::class)->group(function () {
 
     Route::get('/invoice', 'index');
+    Route::get('/invoice/detail', 'detail');
     Route::post('/invoice/store', 'store');
     Route::put('/invoice/add', 'update');
     Route::delete('/invoice/store', 'destroy');
