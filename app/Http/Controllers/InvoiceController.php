@@ -67,6 +67,11 @@ class InvoiceController extends Controller
     public function detail(Request $request)
     {
 
+        $validator = Validator::make($request->all(), ['invoice_code'=> 'required|alpha_dash']);
+        if ($validator->fails()) {
+            return $validator->messages()->toJson();
+        }
+
 
         $data = [];
         $iva = 0.15;
