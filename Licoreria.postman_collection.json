@@ -1,0 +1,768 @@
+{
+	"info": {
+		"_postman_id": "b771f653-50f7-4fa6-9c5b-0620da9d1f4c",
+		"name": "Licoreria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clients-All",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/client/search?code",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"client",
+						"search"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Client-Search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/client/search?name=Kon\n",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"client",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Kon\n"
+						}
+					]
+				},
+				"description": "Buscar por codigo o nombre"
+			},
+			"response": []
+		},
+		{
+			"name": "Client-Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/client/store?name=josue&email=josue@gmail.com&ruc=ruc0001&code=code001&active=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"client",
+						"store"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "josue"
+						},
+						{
+							"key": "email",
+							"value": "josue@gmail.com"
+						},
+						{
+							"key": "ruc",
+							"value": "ruc0001"
+						},
+						{
+							"key": "code",
+							"value": "code001"
+						},
+						{
+							"key": "active",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Client-Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/client/store?id=25",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"client",
+						"store"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "25"
+						}
+					]
+				},
+				"description": "Borrado logico , solo inactiva el registro"
+			},
+			"response": []
+		},
+		{
+			"name": "Client-Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/client/store?name=roman&id=1&email=roma@susana.com&ruc=roman0001&code=roman0004&active=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"client",
+						"store"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "roman"
+						},
+						{
+							"key": "id",
+							"value": "1"
+						},
+						{
+							"key": "email",
+							"value": "roma@susana.com"
+						},
+						{
+							"key": "ruc",
+							"value": "roman0001"
+						},
+						{
+							"key": "code",
+							"value": "roman0004"
+						},
+						{
+							"key": "active",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product-All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/product?page=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"product"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product-Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/product/store?name=samsum-13ss&sku=sku-samusm-6&description=productosdfs&price=555.2&active=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"product",
+						"store"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "samsum-13ss"
+						},
+						{
+							"key": "sku",
+							"value": "sku-samusm-6"
+						},
+						{
+							"key": "description",
+							"value": "productosdfs"
+						},
+						{
+							"key": "price",
+							"value": "555.2"
+						},
+						{
+							"key": "active",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product-Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/product/store?name=Xiaomi mi note &sku=mi-note-11&description=Esto es un xiaomi&price=1500.00&active=1&id=103",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"product",
+						"store"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Xiaomi mi note "
+						},
+						{
+							"key": "sku",
+							"value": "mi-note-11"
+						},
+						{
+							"key": "description",
+							"value": "Esto es un xiaomi"
+						},
+						{
+							"key": "price",
+							"value": "1500.00"
+						},
+						{
+							"key": "active",
+							"value": "1"
+						},
+						{
+							"key": "id",
+							"value": "103"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product-Search",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/product/search?sku=sku",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"product",
+						"search"
+					],
+					"query": [
+						{
+							"key": "sku",
+							"value": "sku"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tasa-All",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/exchage?page=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"exchage"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tasa-Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/exchage/store?rate=35.66&date=2022-04-30&active=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"exchage",
+						"store"
+					],
+					"query": [
+						{
+							"key": "rate",
+							"value": "35.66"
+						},
+						{
+							"key": "date",
+							"value": "2022-04-30"
+						},
+						{
+							"key": "active",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tasa-Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/exchage/store?rate=50&date=2022-04-29&active=1&id=22",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"exchage",
+						"store"
+					],
+					"query": [
+						{
+							"key": "rate",
+							"value": "50"
+						},
+						{
+							"key": "date",
+							"value": "2022-04-29"
+						},
+						{
+							"key": "active",
+							"value": "1"
+						},
+						{
+							"key": "id",
+							"value": "22"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tasa-Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/exchage/store?id=4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"exchage",
+						"store"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invoice-Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/invoice/store?client_id=1&exchange_rate_id=1&code=fac0005&description=Factura Comercial&active=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"invoice",
+						"store"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "1",
+							"description": "Id Cliente"
+						},
+						{
+							"key": "exchange_rate_id",
+							"value": "1",
+							"description": "Id Tasa cambio a usar"
+						},
+						{
+							"key": "code",
+							"value": "fac0005"
+						},
+						{
+							"key": "description",
+							"value": "Factura Comercial"
+						},
+						{
+							"key": "active",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invoice-Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/invoice/add?id=11&client_id=1&exchange_rate_id=1&code=fac-00055&description=Factura Comercial editada&active=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"invoice",
+						"add"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "11"
+						},
+						{
+							"key": "client_id",
+							"value": "1"
+						},
+						{
+							"key": "exchange_rate_id",
+							"value": "1"
+						},
+						{
+							"key": "code",
+							"value": "fac-00055"
+						},
+						{
+							"key": "description",
+							"value": "Factura Comercial editada"
+						},
+						{
+							"key": "active",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invoice-Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/invoice/store?id=3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"invoice",
+						"store"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invoice-List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/invoice?page=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"invoice"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invoice-search-NumFact",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/invoice/detail?invoice_code=27-4206041",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"invoice",
+						"detail"
+					],
+					"query": [
+						{
+							"key": "invoice_code",
+							"value": "27-4206041"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
